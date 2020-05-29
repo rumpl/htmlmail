@@ -27,6 +27,13 @@ func run(file string) error {
 				return md.String(content + "\n")
 			},
 		},
+		md.Rule{
+			Filter: []string{"a"},
+			Replacement: func(content string, selec *goquery.Selection, opt *md.Options) *string {
+				content = strings.TrimSpace(content)
+				return md.String(content)
+			},
+		},
 	)
 
 	fd, err := os.Open(file)
